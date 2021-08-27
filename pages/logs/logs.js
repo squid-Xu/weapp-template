@@ -1,18 +1,17 @@
 // logs.js
-const util = require('../../utils/util.js')
-
+const app = getApp();
 Page({
-  data: {
-    logs: []
-  },
-  onLoad() {
-    this.setData({
-      logs: (wx.getStorageSync('logs') || []).map(log => {
-        return {
-          date: util.formatTime(new Date(log)),
-          timeStamp: log
-        }
-      })
-    })
-  }
-})
+    data: {
+        logs: [],
+    },
+    onLoad() {
+        this.setData({
+            logs: (app.$util.storage("logs") || []).map(log => {
+                return {
+                    date: app.$util.FmtTime(new Date(log), "yyyy/MM/dd hh:mm:ss"),
+                    timeStamp: log,
+                };
+            }),
+        });
+    },
+});
